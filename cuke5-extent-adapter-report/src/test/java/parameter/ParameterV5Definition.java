@@ -40,5 +40,4 @@ public class ParameterV5Definition {
 		System.out.println(dish);
 		System.out.println(table);
 	}
-
 }

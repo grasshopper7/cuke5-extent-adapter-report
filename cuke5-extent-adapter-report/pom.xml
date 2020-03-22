@@ -46,15 +46,21 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.aventstack</groupId>
+			<groupId>tech.grasshopper</groupId>
 			<artifactId>extentreports-cucumber5-adapter</artifactId>
 			<version>1.0.0</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.aventstack</groupId>
-			<artifactId>extentreports</artifactId>
-			<version>4.0.9</version>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.141.59</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>

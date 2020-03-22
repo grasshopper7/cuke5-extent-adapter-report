@@ -1,4 +1,4 @@
-Feature: Group Parameter to Object Conversion
+Feature: Group Parameter to Object ConversionS
 
   Scenario: LocalDate and LocalTime
     Given Customer orders at 20:15:45 on 2019-06-25  

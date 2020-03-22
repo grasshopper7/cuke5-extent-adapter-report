@@ -1,12 +1,13 @@
 package parameter;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JSR310Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.DataTableType;
@@ -14,8 +15,6 @@ import io.cucumber.java.DefaultDataTableCellTransformer;
 import io.cucumber.java.DefaultDataTableEntryTransformer;
 import io.cucumber.java.DefaultParameterTransformer;
 import io.cucumber.java.en.Given;
-
-import java.lang.reflect.Type;
 
 public class DatatableV5Definition {
 
@@ -50,7 +49,7 @@ public class DatatableV5Definition {
 		return menu;
 	}
 
-	private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JSR310Module());
+	private final ObjectMapper objectMapper = new ObjectMapper().registerModule(new JavaTimeModule());
 
 	@DefaultParameterTransformer
 	@DefaultDataTableEntryTransformer
