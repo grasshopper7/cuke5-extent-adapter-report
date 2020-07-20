@@ -1,4 +1,4 @@
-Feature: Scenarios Three feature file for screenshot
+Feature: Scenarios Screenshot
 
 	@website
   Scenario: Scenario screenshot
