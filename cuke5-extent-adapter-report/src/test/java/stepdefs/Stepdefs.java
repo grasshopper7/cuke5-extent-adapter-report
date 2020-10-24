@@ -39,12 +39,14 @@ public class Stepdefs {
 
 	@After(value = "not @failure")
 	public void after(Scenario scenario) {
-
+		this.scenario = scenario;
+		scenario.write("AFTER HI");
+		scenario.write("AFTER HELLO");
 	}
 
 	@Before(value = "@failure")
-	public void beforeFailure(Scenario scenario) {
-		// System.out.println("Before failure");
+	public void beforeFailure(Scenario scenario) { //
+		System.out.println("Before failure");
 		this.scenario = scenario;
 		scenario.write("FAILURE HI");
 		scenario.write("FAILURE HELLO");
@@ -52,29 +54,29 @@ public class Stepdefs {
 	}
 
 	@After(value = "@failure")
-	public void afterFailure() {
-		// System.out.println("After failure");
+	public void afterFailure() { //
+		System.out.println("After failure");
 		scenario.write("FAILURE HI");
 		scenario.write("FAILURE HELLO");
 		throw new RuntimeException();
 	}
 
 	@BeforeStep(value = "@failure")
-	public void beforeStepFailure() {
-		// System.out.println("Before Step failure");
+	public void beforeStepFailure() { //
+		System.out.println("Before Step failure");
 	}
 
 	@AfterStep(value = "@failure")
-	public void afterStepFailure() {
-		// System.out.println("After Step failure");
+	public void afterStepFailure() { //
+		System.out.println("After Step failure");
 	}
 
 	@Given("Hook failure step")
 	public void hook_failure_step() throws InterruptedException {
 		// System.out.println("Failure step");
+		Thread.sleep(500);
 		scenario.write("FAILURE STEP HI");
 		scenario.write("FAILURE STEP HELLO");
-		Thread.sleep(500);
 	}
 
 	@Given("Skip hook failure step")
@@ -83,8 +85,10 @@ public class Stepdefs {
 	}
 
 	@Given("{string} background")
-	public void background(String type) {
+	public void background(String type) throws InterruptedException {
 		System.out.format("%s type background. \n", type);
+		this.scenario.write("background");
+		Thread.sleep(250);
 	}
 
 	@Given("Write a {string} step with precondition in {string}")
@@ -92,7 +96,8 @@ public class Stepdefs {
 	@Then("Validate the outcome in {string} step in {string}")
 	public void step(String step, String scenario) throws InterruptedException {
 		System.out.format("%s step from %s.\n", step.toUpperCase(), scenario.toUpperCase());
-		Thread.sleep(400);
+		this.scenario.write("log HATE THIS");
+		Thread.sleep(1000);
 	}
 
 	@Then("Raise exception")
@@ -109,12 +114,14 @@ public class Stepdefs {
 	}
 
 	@Given("Customer orders the dishes")
-	public void dataTable(List<List<String>> table) {
+	public void dataTable(List<List<String>> table) throws InterruptedException {
+		Thread.sleep(4000);
 		System.out.println(table);
 	}
 
 	@Given("the doc string is")
-	public void docStr(String docStr) {
+	public void docStr(String docStr) throws InterruptedException {
+		Thread.sleep(4000);
 		System.out.println(docStr);
 	}
 
@@ -125,27 +132,41 @@ public class Stepdefs {
 	public void visitweb(String site) throws Exception {
 		driver.get(site);
 		this.site = site;
-		// scenario.write("scenario write");
 		scenario.write("scenario website name - " + site);
-		Thread.sleep(3000);
+		Thread.sleep(500);
 	}
 
-	@BeforeStep(value = "@website")
+	@BeforeStep(value = "@website", order = 1)
 	public void beforeSite(Scenario scenario) {
 		this.scenario = scenario;
+
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		scenario.write("HELLO THERE!!!");
+
+		scenario.write("HELLO THERE!!! ");
 	}
 
-	@AfterStep(value = "@website")
+	@BeforeStep(value = "@website", order = 2)
+	public void beforeSite2() {
+		scenario.write("GOOD BYE!!! ");
+	}
+
+	@AfterStep(value = "@website", order = 2)
 	public void afterSite() {
+
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-		// scenario.embed(screenshot, "image/png", this.site);
-		// scenario.embed(screenshot, "image/png");
+
+		scenario.write("HELLO THERE!!! " + this.site);
+
 		scenario.embed(screenshot, "image/png", this.site);
 		driver.quit();
+
+	}
+
+	@AfterStep(value = "@website", order = 1)
+	public void afterSite2() {
+		scenario.write("GOOD BYE!!! " + this.site);
 	}
 }

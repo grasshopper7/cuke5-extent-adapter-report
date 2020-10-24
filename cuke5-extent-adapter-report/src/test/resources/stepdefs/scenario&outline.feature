@@ -16,7 +16,7 @@ Feature: Scenario And Scenario Outline
       | Scenario Outline One |     400 |
       | Scenario Outline Two |     600 |
 
-
+  @scen
   Scenario: Scenario Number Seven Seven Seven
     Given Write a 'given' step with precondition in 'Scenario 777'
     When Complete action in 'when' step in 'Scenario 777'
