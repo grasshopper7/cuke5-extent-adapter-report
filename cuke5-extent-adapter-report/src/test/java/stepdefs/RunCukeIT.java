@@ -7,7 +7,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(plugin = { "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
-		"summary" }, tags = "not @dialect", strict = true)
+		"summary" } /* , tags = "not @dialect" */ , strict = true)
 public class RunCukeIT {
 
 }
