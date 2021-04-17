@@ -1,6 +1,8 @@
 package stepdefs;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
+
+//import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 import java.util.Random;
@@ -9,6 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.SkipException;
 
 import io.cucumber.java.After;
 import io.cucumber.java.AfterStep;
@@ -47,7 +50,6 @@ public class Stepdefs {
 
 	@Before(value = "@failure")
 	public void beforeFailure(Scenario scenario) { //
-		System.out.println("Before failure");
 		this.scenario = scenario;
 		scenario.write("FAILURE HI");
 		scenario.write("FAILURE HELLO");
@@ -56,7 +58,6 @@ public class Stepdefs {
 
 	@After(value = "@failure")
 	public void afterFailure() { //
-		System.out.println("After failure");
 		scenario.write("FAILURE HI");
 		scenario.write("FAILURE HELLO");
 		throw new RuntimeException();
@@ -64,12 +65,10 @@ public class Stepdefs {
 
 	@BeforeStep(value = "@failure")
 	public void beforeStepFailure() { //
-		System.out.println("Before Step failure");
 	}
 
 	@AfterStep(value = "@failure")
 	public void afterStepFailure() { //
-		System.out.println("After Step failure");
 	}
 
 	@Given("Hook failure step")
@@ -118,13 +117,11 @@ public class Stepdefs {
 	@Given("Customer orders the dishes")
 	public void dataTable(List<List<String>> table) throws InterruptedException {
 		Thread.sleep(4000);
-		System.out.println(table);
 	}
 
 	@Given("the doc string is")
 	public void docStr(String docStr) throws InterruptedException {
 		Thread.sleep(4000);
-		System.out.println(docStr);
 	}
 
 	private WebDriver driver;
@@ -171,9 +168,14 @@ public class Stepdefs {
 	public void afterSite2() {
 		scenario.write("GOOD BYE!!! " + this.site);
 	}
-	
-	@Given("Pending step definition methods")
+
+	@Given("Pending step definition")
 	public void pending_step_definition_methods() {
-	    throw new PendingException();
+		throw new PendingException();
+	}
+
+	@Given("Skipped step definition")
+	public void skippedStep() {
+		throw new SkipException("SKip it");
 	}
 }

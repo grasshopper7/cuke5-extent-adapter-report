@@ -1,6 +1,7 @@
 @both
 Feature: Scenario And Scenario Outline
 
+	@scenout
   Scenario Outline: Scenario Outline Row <row_num>
     Given Write a 'given' step with precondition in '<scenario_num><row_num>'
     When Complete action in 'when' step in '<scenario_num><row_num>'
