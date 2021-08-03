@@ -1,1 +1,1 @@
-For more details refer to this [article](https://grasshopper.tech/1697/)
+For more details refer to this [article](https://ghchirp.tech/1697/)
