@@ -1,20 +1,25 @@
 @both
 Feature: Scenario And Scenario Outline
+  Hello Feature Scenario And Scenario Outline
 
   Background: 
     Given Hello background
 
   @scenout
-  Scenario Outline: Scenario Outline Row <row_num>
+  Scenario Outline: SO Row <row_num>
+    SO Row Description
+
     Given Write a 'given' step with precondition in '<scenario_num><row_num>'
     When Complete action in 'when' step in '<scenario_num><row_num>'
     Then Validate the outcome in 'then' step in '<scenario_num><row_num>'
 
+    @odd
     Examples: Odd number prefix
       | scenario_num         | row_num |
       | Scenario Outline One |     300 |
       | Scenario Outline Two |     500 |
 
+    @even
     Examples: Even number prefix
       | scenario_num         | row_num |
       | Scenario Outline One |     400 |
@@ -22,10 +27,12 @@ Feature: Scenario And Scenario Outline
 
   @scen
   Scenario: Scenario Number Seven Seven Seven
+    Scenario Number Seven Seven Seven Desc
+
     Given Write a 'given' step with precondition in 'Scenario 777'
     When Complete action in 'when' step in 'Scenario 777'
     Then Validate the outcome in 'then' step in 'Scenario 777'
-    
+
   @misc
   Scenario: Scenario Other Symbols
     * Write a 'given' step with precondition in 'Scenario 777'
