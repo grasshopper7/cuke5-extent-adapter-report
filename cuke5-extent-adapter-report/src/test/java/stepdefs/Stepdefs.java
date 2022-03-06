@@ -33,7 +33,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class Stepdefs {
 
 	private Scenario scenario;
-	
+
 	@Given("Hello background")
 	public void background() throws InterruptedException {
 		this.scenario.log("background");
@@ -183,5 +183,27 @@ public class Stepdefs {
 	@Given("Skipped step definition")
 	public void skippedStep() {
 		throw new SkipException("SKip it");
+	}
+
+	@Given("Go to capture 2 images in one step")
+	public void twoImages() throws Exception {
+		WebDriverManager.chromedriver().setup();
+		driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		Thread.sleep(500);
+
+		driver.get("https://github.com/");
+		Thread.sleep(500);
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
+		scenario.attach(screenshot, "image/png", "github");
+
+		driver.get("https://stackoverflow.com/");
+		Thread.sleep(500);
+		ts = (TakesScreenshot) driver;
+		screenshot = ts.getScreenshotAs(OutputType.BYTES);
+		scenario.attach(screenshot, "image/png", "stackoverflow");
+
+		driver.quit();
 	}
 }
