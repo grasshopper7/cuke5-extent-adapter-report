@@ -92,7 +92,7 @@ public class Stepdefs {
 
 	@Given("{string} background")
 	public void background(String type) throws InterruptedException {
-		System.out.format("%s type background. \n", type);
+		//System.out.format("%s type background. \n", type);
 		this.scenario.write("background");
 		Thread.sleep(250);
 	}
@@ -101,7 +101,7 @@ public class Stepdefs {
 	@When("Complete action in {string} step in {string}")
 	@Then("Validate the outcome in {string} step in {string}")
 	public void step(String step, String scenario) throws InterruptedException {
-		System.out.format("%s step from %s.\n", step.toUpperCase(), scenario.toUpperCase());
+		//System.out.format("%s step from %s.\n", step.toUpperCase(), scenario.toUpperCase());
 		this.scenario.write("log HATE THIS");
 		Thread.sleep(1000);
 	}
