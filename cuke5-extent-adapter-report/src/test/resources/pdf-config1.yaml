@@ -4,7 +4,8 @@ skipColor: a89132
 displayFeature: true
 displayScenario: true
 displayDetailed: true
-displayAttached: true
+displayAttached: false
+displayExpanded: true
 
 dashboardConfig:
    title: Cucumber PDF Report
