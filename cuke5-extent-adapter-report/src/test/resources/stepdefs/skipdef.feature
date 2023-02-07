@@ -1,4 +1,4 @@
-@skip
+@skip @dev_sskkiipp @aut_piks
 Feature: Scenarios With No Step Definitions
   Feature description
 
@@ -6,13 +6,13 @@ Feature: Scenarios With No Step Definitions
     Skip Scenario Description
 
     Given No step definition methods
-    
-    Scenario: Pending step
+
+  Scenario: Pending step
     Pending Scenario Description
 
     Given Pending step definition
 
-    Scenario: Skipped step
+  Scenario: Skipped step
     Skipped Scenario Description
 
     Given Skipped step definition
